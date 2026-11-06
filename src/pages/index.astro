@@ -1,22 +1,23 @@
+
 ---
-import Layout from '../layouts/Layout.astro';
-
-const name = 'Mark Ryan Zipagan';
-const position = 'AI Engineer';
+import Contact from "../sections/contact.astro";
+import Hero from "../sections/hero.astro";
+import Services from "../sections/services.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Process from "../sections/process.astro";
+import Header from "../layouts/Header.astro";
+import Footer from "../layouts/Footer.astro";
 ---
 
-<Layout name={name} position={position}>
-	<main>
-		<h1 class="text-red-700">{name} | {position}</h1>
-	</main>
-</Layout>
-
-<style>
-	main {
-		padding: 1rem;
-	}
-
-	.text-red-700 {
-		color: #b91c1c;
-	}
-</style>
+<BaseLayout>
+    <div class="container">
+        <Header />
+        <Hero />
+        <main>
+            <Services />
+            <Process />
+            <Contact />
+        </main>
+        <Footer />
+    </div>
+</BaseLayout>

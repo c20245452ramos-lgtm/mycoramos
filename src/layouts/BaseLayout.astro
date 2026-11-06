@@ -1,0 +1,54 @@
+---
+import "../styles/global.css";
+const name = "Myco Ramos";
+---
+
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{name} | Portfolio</title>
+  </head>
+  <body>
+    <slot />
+    <script>
+      const themeToggle = document.querySelector<HTMLButtonElement>("[data-theme-toggle]");
+
+      if (themeToggle) {
+        const savedTheme = localStorage.getItem("theme");
+        const initialTheme = savedTheme === "light" ? "light" : "dark";
+
+        function updateTheme(button: HTMLButtonElement, theme: "light" | "dark") {
+          document.documentElement.dataset.theme = theme;
+          button.setAttribute("aria-pressed", String(theme === "dark"));
+          button.textContent = theme === "dark" ? "Light mode" : "Dark mode";
+        }
+
+        updateTheme(themeToggle, initialTheme);
+        themeToggle.addEventListener("click", () => {
+          const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+          localStorage.setItem("theme", nextTheme);
+          updateTheme(themeToggle, nextTheme);
+
+          if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            themeToggle.animate(
+              [{ transform: "rotate(0deg)" }, { transform: "rotate(360deg)" }],
+              { duration: 600, easing: "ease-in-out" },
+            );
+          }
+        });
+      }
+
+      document.querySelector<HTMLButtonElement>("[data-refresh-page]")?.addEventListener("click", () => {
+        window.location.reload();
+      });
+
+      const currentYear = document.querySelector<HTMLElement>("[data-current-year]");
+      if (currentYear) currentYear.textContent = String(new Date().getFullYear());
+    </script>
+  </body>
+</html>
