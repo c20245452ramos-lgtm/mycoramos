@@ -1,11 +1,22 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const name = 'Mark Ryan Zipagan';
+const position = 'AI Engineer';
 ---
 
-<Layout>
-	<Welcome />
+<Layout name={name} position={position}>
+	<main>
+		<h1 class="text-red-700">{name} | {position}</h1>
+	</main>
 </Layout>
+
+<style>
+	main {
+		padding: 1rem;
+	}
+
+	.text-red-700 {
+		color: #b91c1c;
+	}
+</style>
