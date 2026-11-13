@@ -109,7 +109,7 @@ nav {
   border: 1px solid transparent;
   padding: 8px 17px;
   white-space: nowrap;
-  transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
 }
 
 .btn-primary {
@@ -118,13 +118,19 @@ nav {
 }
 
 :root[data-theme="dark"] .btn-primary {
-  background: #c2410c;
+  background: #fdba74;
+  color: #431407;
 }
 
 .btn-primary:hover {
   transform: translateY(-1px);
   background: #f97316;
   color: white;
+}
+
+:root[data-theme="dark"] .btn-primary:hover {
+  background: #fed7aa;
+  color: #431407;
 }
 
 .btn-secondary {
@@ -215,6 +221,17 @@ p {
 #contact a {
   color: var(--accent);
   font-weight: 700;
+}
+
+#contactMessage {
+  border-radius: 12px;
+  transition: background-color 200ms ease, padding 200ms ease, box-shadow 200ms ease;
+}
+
+#contactMessage.contact-highlight {
+  padding: 12px;
+  background: var(--panel);
+  box-shadow: 0 8px 24px var(--glass-shadow);
 }
 
 .btn-primary:focus-visible,
