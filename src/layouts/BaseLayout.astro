@@ -25,5 +25,9 @@ const name = "Myco Ramos";
     ></div>
     <slot />
     <script src="../scripts/animation.js"></script>
+    <script>
+            import { FallingLeaves } from "falling-leaves";
+            new FallingLeaves({ shapes: ["maple", "oak", "ginkgo", "birch", "oval"] });
+        </script>
   </body>
 </html>

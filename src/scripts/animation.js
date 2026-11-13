@@ -102,6 +102,7 @@ function animateOnScroll(targets, trigger, options = {}) {
 animateOnScroll("#services > h2", "#services", { stagger: 0 });
 animateOnScroll(".service", ".services");
 animateOnScroll("#process > h2, .process-step", "#process");
+animateOnScroll("#faq > h2, .faq-item", "#faq");
 animateOnScroll("#contact > *", "#contact");
 
 document.querySelector("[data-refresh-page]")?.addEventListener("click", () => {
