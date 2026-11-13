@@ -6,6 +6,34 @@ gsap.registerPlugin(Flip, ScrollTrigger);
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
+const scrollProgress = document.querySelector("[data-scroll-progress]");
+
+if (scrollProgress instanceof HTMLElement) {
+    let updateScheduled = false;
+
+    function updateScrollProgress() {
+        const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = scrollableHeight > 0
+            ? Math.min(Math.max(window.scrollY / scrollableHeight, 0), 1)
+            : 0;
+
+        scrollProgress.style.transform = `scaleX(${progress})`;
+        scrollProgress.setAttribute("aria-valuenow", String(Math.round(progress * 100)));
+        updateScheduled = false;
+    }
+
+    function scheduleProgressUpdate() {
+        if (updateScheduled) return;
+        updateScheduled = true;
+        window.requestAnimationFrame(updateScrollProgress);
+    }
+
+    window.addEventListener("scroll", scheduleProgressUpdate, { passive: true });
+    window.addEventListener("resize", scheduleProgressUpdate, { passive: true });
+    window.addEventListener("load", scheduleProgressUpdate, { once: true });
+    updateScrollProgress();
+}
+
 const themeToggle = document.querySelector("[data-theme-toggle]");
 
 if (themeToggle instanceof HTMLButtonElement) {
